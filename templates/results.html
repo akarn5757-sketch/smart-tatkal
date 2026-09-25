@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Train Results{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>Train Results</h1>
+    <p>{{ source }} → {{ destination }} • {{ journey_date }} • Tatkal</p><span class="pill">Data source: {{ provider_name }}</span>
+  </div>
+  {% if current_user %}<a class="btn" href="{{ url_for('booking_plan') }}">Booking Plan</a>{% endif %}
+</div>
+
+<div class="train-list">
+{% for t in trains %}
+  <article class="card train">
+    <div>
+      <span class="train-no">{{ t.number }}</span>
+      <h2>{{ t.name }}</h2>
+      <p>{{ t.from }} → {{ t.to }} • {{ t.duration }}</p>
+    </div>
+    <div class="classes">
+      {% for cls, seats in t.classes.items() %}
+        <div><b>{{ cls }}</b><span>{{ seats }} demo seats</span></div>
+      {% endfor %}
+    </div>
+    <div>
+      <button class="btn" onclick="selectTrain('{{ t.number }}', '{{ t.name }}')">Prepare</button>
+    </div>
+  </article>
+{% else %}
+  <div class="card"><h3>No trains returned</h3><p>Check your authorized provider configuration or try another route/date.</p></div>
+{% endfor %}
+</div>
+<div id="selected" class="card hidden">
+  <h2>Selected train</h2><p id="selectedText"></p>
+  <a class="btn" href="{{ url_for('booking_plan') }}">Continue to Booking Plan</a>
+</div>
+{% endblock %}

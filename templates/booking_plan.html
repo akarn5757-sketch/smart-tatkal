@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Booking Plan{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Booking Plan</h1>
+  <p>Use this checklist immediately before the official booking process.</p>
+  <ol class="checklist">
+    <li>Confirm journey date and route.</li>
+    <li>Confirm Tatkal quota and class.</li>
+    <li>Check passenger names, age and gender.</li>
+    <li>Keep your authorized railway account ready.</li>
+    <li>Complete CAPTCHA/OTP yourself when requested.</li>
+    <li>Complete payment through the authorized payment flow.</li>
+  </ol>
+</section>
+
+<section class="card">
+  <h2>Saved Passenger Information</h2>
+  {% if passengers %}
+  <table>
+    <tr><th>Name</th><th>Age</th><th>Gender</th><th>Berth</th></tr>
+    {% for p in passengers %}
+    <tr><td>{{ p.name }}</td><td>{{ p.age }}</td><td>{{ p.gender }}</td><td>{{ p.berth }}</td></tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p>No passenger saved. <a href="{{ url_for('dashboard') }}">Add passengers</a>.</p>
+  {% endif %}
+</section>
+
+<section class="notice">
+  <b>Important:</b> This app does not log into IRCTC or submit a booking automatically.
+  It is designed as a preparation/assistance layer.
+</section>
+{% endblock %}

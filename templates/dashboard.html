@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div><h1>Welcome, {{ current_user.name }}</h1><p>Manage passengers and booking information.</p></div>
+  <a class="btn" href="{{ url_for('booking_plan') }}">Booking Plan</a>
+</div>
+
+<div class="two-col">
+  <section class="card">
+    <h2>Add Passenger</h2>
+    <form method="post" action="{{ url_for('add_passenger') }}">
+      <label>Full name<input name="name" required></label>
+      <label>Age<input type="number" name="age" min="0" max="125" required></label>
+      <label>Gender
+        <select name="gender"><option>Male</option><option>Female</option><option>Other</option></select>
+      </label>
+      <label>Berth preference
+        <select name="berth">
+          <option>No Preference</option><option>Lower</option><option>Middle</option>
+          <option>Upper</option><option>Side Lower</option><option>Side Upper</option>
+        </select>
+      </label>
+      <button class="btn" type="submit">Save Passenger</button>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2>Saved Passengers</h2>
+    {% if passengers %}
+      {% for p in passengers %}
+      <div class="list-row">
+        <div><b>{{ p.name }}</b><br><span>{{ p.age }} • {{ p.gender }} • {{ p.berth }}</span></div>
+        <form method="post" action="{{ url_for('delete_passenger', pid=p.id) }}">
+          <button class="danger-btn" type="submit">Delete</button>
+        </form>
+      </div>
+      {% endfor %}
+    {% else %}
+      <p class="muted">No passengers saved yet.</p>
+    {% endif %}
+  </section>
+</div>
+
+<section class="card">
+  <h2>Track PNR</h2><p class="muted">Status is fetched only through the configured railway provider.</p>
+  <form method="post" action="{{ url_for('add_pnr') }}" class="inline-form">
+    <input name="pnr" maxlength="10" placeholder="10-digit PNR" required>
+    <button class="btn" type="submit">Save PNR</button>
+  </form>
+  {% for p in pnrs %}
+    <div class="list-row"><span><b>{{ p.pnr }}</b> — {{ p.status }}</span></div>
+  {% else %}
+    <p class="muted">No PNRs saved.</p>
+  {% endfor %}
+</section>
+{% endblock %}

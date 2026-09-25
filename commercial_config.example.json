@@ -1,0 +1,24 @@
+{
+  "business": {
+    "name": "YOUR_APPROVED_BUSINESS_NAME",
+    "mode": "RSP",
+    "psp_name": "YOUR_CONTRACTED_PSP"
+  },
+  "railway_integration": {
+    "provider": "authorized",
+    "base_url": "https://YOUR-AUTHORIZED-ENDPOINT",
+    "authentication": "provider-defined"
+  },
+  "pricing": {
+    "source": "authorized_psp",
+    "allow_custom_surcharges": false,
+    "note": "Use only charges permitted by the current IRCTC/PSP/RSP agreement."
+  },
+  "security": {
+    "store_customer_irctc_password": false,
+    "store_customer_otp": false,
+    "store_customer_captcha": false,
+    "store_payment_credentials": false,
+    "store_session_cookies": false
+  }
+}

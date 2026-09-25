@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Smart Tatkal Assistant{% endblock %}
+{% block content %}
+<section class="hero">
+  <div>
+    <span class="pill">Fast • Simple • Compliant</span>
+    <h1>Prepare your Tatkal booking faster.</h1>
+    <p>Save passenger details, search trains, monitor Tatkal timing and prepare your booking plan before the official booking flow.</p>
+  </div>
+  <div class="hero-card">
+    <div class="big">⏱</div>
+    <h3>Tatkal Countdown</h3>
+    <p>Know when the booking window opens.</p>
+    <a class="btn" href="{{ url_for('tatkal') }}">Open Countdown</a>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Search Trains</h2>
+  <form method="post" action="{{ url_for('search') }}" class="grid-form">
+    <label>From<input name="source" placeholder="e.g. Patna" required></label>
+    <label>To<input name="destination" placeholder="e.g. New Delhi" required></label>
+    <label>Journey date<input type="date" name="journey_date" required></label>
+    <button class="btn" type="submit">Search</button>
+  </form>
+</section>
+
+<section>
+  <h2>How it works</h2>
+  <div class="cards">
+    <div class="mini-card"><b>1. Save</b><p>Store your passenger information in your account.</p></div>
+    <div class="mini-card"><b>2. Prepare</b><p>Select route, class and preferred train.</p></div>
+    <div class="mini-card"><b>3. Book officially</b><p>Complete the final booking through the authorized railway flow.</p></div>
+  </div>
+</section>
+{% endblock %}

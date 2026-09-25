@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Tatkal Countdown{% endblock %}
+{% block content %}
+<section class="center-card card">
+  <span class="pill">Tatkal</span>
+  <h1>Booking Window Countdown</h1>
+  <p>For planning only. The final booking must be completed through the authorized railway booking flow.</p>
+
+  <div class="count-grid">
+    <div><b id="hours">00</b><span>Hours</span></div>
+    <div><b id="minutes">00</b><span>Minutes</span></div>
+    <div><b id="seconds">00</b><span>Seconds</span></div>
+  </div>
+
+  <label>Choose quota opening
+    <select id="quotaTime">
+      <option value="10">AC Tatkal — 10:00 AM</option>
+      <option value="11">Non-AC Tatkal — 11:00 AM</option>
+    </select>
+  </label>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>
+function updateCountdown() {
+  const hour = parseInt(document.getElementById("quotaTime").value);
+  const now = new Date();
+  let target = new Date(now);
+  target.setHours(hour, 0, 0, 0);
+  if (now >= target) target.setDate(target.getDate() + 1);
+  const diff = Math.max(0, target - now);
+  const h = Math.floor(diff / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  document.getElementById("hours").textContent = String(h).padStart(2,"0");
+  document.getElementById("minutes").textContent = String(m).padStart(2,"0");
+  document.getElementById("seconds").textContent = String(s).padStart(2,"0");
+}
+document.getElementById("quotaTime").addEventListener("change", updateCountdown);
+setInterval(updateCountdown, 1000); updateCountdown();
+</script>
+{% endblock %}

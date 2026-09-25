@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Commercial & Compliance{% endblock %}
+{% block content %}
+<section class="card">
+  <span class="pill">Authorized service architecture</span>
+  <h1>Commercial Railway Booking</h1>
+  <p>
+    This application is structured for use with an IRCTC-authorized PSP/RSP
+    integration. It does not create an authorization by itself.
+  </p>
+</section>
+
+<div class="two-col">
+<section class="card">
+  <h2>Customer security</h2>
+  <ul>
+    <li>No customer IRCTC password stored by this application.</li>
+    <li>No CAPTCHA collection or bypass.</li>
+    <li>No OTP collection or bypass.</li>
+    <li>No payment-card/UPI credentials stored.</li>
+    <li>No session-cookie sharing.</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>Commercial rules</h2>
+  <ul>
+    <li>Use only an authorized PSP/RSP account and integration.</li>
+    <li>Use only permitted service charges.</li>
+    <li>Do not advertise the app as IRCTC-authorized until authorization exists.</li>
+    <li>Do not use personal IRCTC IDs for commercial booking.</li>
+  </ul>
+</section>
+</div>
+
+<section class="notice">
+  <b>Before production:</b> execute the required PSP/RSP agreement, obtain the
+  provider's API documentation/credentials, complete security/privacy review,
+  and configure the exact permitted charges and booking workflow from the
+  agreement.
+</section>
+{% endblock %}
