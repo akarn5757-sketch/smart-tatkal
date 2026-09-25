@@ -12,7 +12,7 @@
     <a class="brand" href="{{ url_for('index') }}">🚆 Smart Tatkal</a>
     <div class="nav-links">
       <a href="{{ url_for('index') }}">Search</a>
-      <a href="{{ url_for('tatkal') }}">Tatkal</a><a href="{{ url_for('compliance') }}">Commercial</a>
+      <a href="{{ url_for('tatkal') }}">Tatkal</a><a href="{{ url_for('commercial') }}">Commercial</a>
       {% if current_user %}
         <a href="{{ url_for('booking_plan') }}">Booking Plan</a>
         <a href="{{ url_for('dashboard') }}">Dashboard</a>
